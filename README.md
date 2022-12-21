@@ -386,6 +386,21 @@ plt.tight_layout()
 Now at the end of this project we will conclude by putting our final insights. What we have understood from the data analysis and recommendation what should be implemented for improving business operations, sales and profit.
 
 # **Conclusion**
+## Final insights.
+- The Members are doing well in terms of sales numbers for the company. Thus a campaign can be formulated to promote the
+  member sign-ups
+  
+- The spike in Feb sales hints that the stores have the potential to have higher sales throughout the year. Some focused
+  marketing can significantly improve period sales, especially from April to November,
+  Food & Beverages, Home and lifestyle have the maximum AOV among all categories but constitute just 20% of the total sales.
+  
+- The ratings are also better than other categories. It is a sign that a strategy can be formulated to promote these categories
+  It is a good sign for the supermarket chain that Females are driving the majority of the sales. Even female-dominated
+  categories such as Health & Beauty and Fashion are top product categories. The company can scale this further to improve
+  overall revenue Females tend to be higher spenders than Men, and companies can take more advantage of this data insight
+  
+- Yangon has the least sales and AOV of all cities, and the difference is significant too. Hence a focused marketing campaign
+  can be launched to meet the potential sale in this city.
 
 
 
