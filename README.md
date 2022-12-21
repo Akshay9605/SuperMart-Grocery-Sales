@@ -142,6 +142,73 @@ margins )
 - The company can expand in the North and East of Myanmar as there is no presence in those areas
 - A big coastal city Sittwe is also an option for later expansion
 
+# **Bivariate Analysis**
+Bivariate analysis is one of the statistical analysis where two variables are observed. One variable here is dependent while the other is independent. These variables are usually denoted by X and Y. So, here we analyse the changes occured between the two variables and to what extent. 
+
+### 1. Heatmap
+The purpose of Heatmap here is to look for any significant correlations among continuous variables in our data.
+![image](https://user-images.githubusercontent.com/90236224/208824854-3119f89d-a236-4537-be2b-1bfda54489d0.png)
+
+- We see a high correlation in almost all sales-related fields because they are derived from each other.
+
+Four important metrics can provide maximum insights into this sales data -
+1. Sales
+2. AOV - Average Order Value
+3. Mean Order Quantity
+4. Ratings
+It would be worthwhile to plot these against multiple categorical variables to see if those categories impact these four metrics.
+It can be a great way to determine what's working for the chain and what is not.
+
+We shall write a function for bivariate analysis
+
+```
+    # Defining function for Univariate Analysis of Quantitative Variables
+
+def grouped_analysis(col,hue=None):
+    
+    plt.figure(figsize=(20,10))
+    
+    def custom_fmt(x):                                                     # Custom format function to show values in pie chart
+        return '{:.0f}%\n({:.0f})'.format(x, sales_grouped['Total'].sum()*x/100)  # It is used in autopct parameter in pie chart
+
+    
+    sales_grouped= df1[[col,'Total']].groupby(col).sum()                # Sales grouped by col
+    mean_ratings = df1[[col,'Rating']].groupby(col).mean()              # Avg ratings grouped by col
+    aov  = df1[[col,'Total']].groupby(col).mean()                       # AOV by col
+    mean_units_qty = df1[[col,'Quantity']].groupby(col).mean()          # Mean order qty by col
+
+    fig, axes=plt.subplots(nrows =2,ncols=2,figsize=(20,12))                      # Defining 4 subplots, changing fig size
+    axes[0,0].set_title("Sales by " + col , size = 25)                            # Chart title for Subplot 1
+    axes[0,0].set_xticklabels(axes[0,0].get_xticklabels(), fontsize=20)
+   
+    _=axes[0,0].pie(sales_grouped['Total'], labels = sales_grouped.index, autopct= custom_fmt,textprops={'fontsize': 14})
+
+
+    axes[0,1].set_title("AOV by "  + col,size = 25 )                              #  Title for Subplot 2
+    axes[0,1].set_xticklabels(axes[0,0].get_xticklabels(), fontsize=20)    
+    axes[0,1].set_xlabel( axes[0,0].get_xticklabels(),fontsize=20)
+    axes[0,1].set_ylabel( axes[0,0].get_yticklabels(),fontsize=20)
+    g=sns.barplot(x=aov.index, y='Total', color="#f7a516",data=aov,ax=axes[0,1]) 
+    g.set_xticklabels(
+    labels=aov.index, rotation=45)                                                # Rotating lables so that they dont overlap
+    
+    
+    axes[1,0].set_title("Mean Ratings by " + col,size = 25 )                      # Title for Subplot 3
+    axes[1,0].set_xlabel( axes[0,0].get_xticklabels(),fontsize=20)
+    axes[1,0].set_ylabel( axes[0,0].get_yticklabels(),fontsize=20)
+    sns.barplot(y=mean_ratings.index, x='Rating', color="#305cb0",data=mean_ratings,ax=axes[1,0],orient='h')
+
+    
+    axes[1,1].set_title("Mean Units Qty by " + col,size = 25 )                    # Title for Subplot 4
+    axes[1,1].set_xlabel( axes[0,0].get_xticklabels(),fontsize=20)
+    axes[1,1].set_ylabel( axes[0,0].get_yticklabels(),fontsize=20)
+    sns.barplot(y=mean_units_qty.index, x='Quantity', color="#712f80",data=mean_units_qty,ax=axes[1,1],orient='h')
+
+    plt.tight_layout()
+    fig.savefig("grouped_analysis"+col+".png")
+```
+
+
 
 
 
