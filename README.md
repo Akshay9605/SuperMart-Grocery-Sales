@@ -100,7 +100,42 @@ def univariate_quant(col,hue=None):
 
 ### 1. Across city
 ![image](https://user-images.githubusercontent.com/90236224/208817645-ee512894-3ad3-4aba-9947-5e876c5ea586.png)
-- 
+- All cities have an almost equal number of transactions. In other words, the footprint of the supermarket is similar across cities.
+
+### 2. Payment
+![image](https://user-images.githubusercontent.com/90236224/208820986-85bf067d-4e13-4cf9-8923-951942f42d6d.png)
+- E-Wallet is the most preferred payment mode while Credit card is the least
+
+### 3. Gender
+![image](https://user-images.githubusercontent.com/90236224/208821047-c338ba54-71db-429c-85cd-1ec80aa58ef5.png)
+- Females transact more as compared to males. There can be multiple reasons for this which can be a part of the further analysis -
+- Is the supermarket known for female-oriented products?
+- Does the region, in general, have more females than males?
+- It might be a surprising insight for the supermarket, and a particular factor might be causing it - Store aesthetics, offers on a select
+  catalogue etc.
+  
+### Product Line
+![image](https://user-images.githubusercontent.com/90236224/208821172-1173dbc8-e8d0-4e5d-a388-659a6542d47c.png)
+- There are two types of product lines because there is a huge gap in # transactions among the top 3 and bottom 3 product lines.
+1. Health & Beauty, Sports, Fashion constitute the majority of the transactions and are high selling product lines for the
+supermarket.
+2. The other 3 product lines are not selling as much.
+3. Health and Beauty is a top-selling product line with a healthy margin.
+The possible reasons for this might be the following -
+- There is differentiation in focus by the supermarket - there are more products on sale from the top 3 as compared to the
+bottom 3
+- There are special offers on the top 3 which are driving the sales
+- The prices and quality of the top 3 are more competitive than the rest
+- The management is more focused and concerned with the growth of the top 3 rather than others ( Possibly due to low
+margins )
+
+### Customer Members
+![image](https://user-images.githubusercontent.com/90236224/208821250-adf6e669-6232-4dd9-b666-2536ec69ad22.png)
+- 2/3rd of the transactions are done by Normal Members and only 1/3rd by Members
+
+
+
+
 
 
 
