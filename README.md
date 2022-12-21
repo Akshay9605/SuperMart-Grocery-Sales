@@ -51,4 +51,58 @@ For purpose of illustration the [Super Market Sales](https://drive.google.com/fi
  
  - After null% verification it is confirmed that all null values have been imputed.
  
+ # **Univariate Analysis(Quantative)**
+ It is the most simplest form of statistical analysis. The key fact is that only one variable is involved. 
+ Here we shall use voilin plot and stripplot for analysis. For that purpose we need to write a function. 
+  
+ ``` 
+  # Defining function for Univariate Analysis of Quantitative Variables
+
+def univariate_quant(col,hue=None):
+
+    fig, axes=plt.subplots(nrows =2,ncols=1,figsize=(20,12))        # Defining 2 subplots, changing fig size
+    axes[1].set_title( "Boxenplot of "+ col , size =14)             # Chart title for Subplot 1
+    sns.stripplot(df1[col],ax=axes[1], color="#4CB391")             # Distplot in subplot 1
+
+
+    axes[0].set_title("Violinplot for  " + col )                    #  Title for Subplot 2
+    sns.violinplot(df1[col],ax=axes[0], color="grey")               # Violinplot in Subplot 2
+    
+                      
+    plt.tight_layout()
+    fig.savefig("univariate_"+col+".png")
+  ```
+  
+### 1. Unit price 
+![image](https://user-images.githubusercontent.com/90236224/208816312-8b4eabc2-c428-4a97-b120-ea8ac860ed0a.png)
+- Unit price doesn't follow a normal distribution
+- it is more or less similar frequency for the range 20-80
+  
+### 2. Quantity
+![image](https://user-images.githubusercontent.com/90236224/208816498-82072637-8cee-4208-8403-c261b3615b48.png)
+- The distribution is a relatively flatter one. The range 1-13 is the densest
+- Mean, and peak coincide at 7, meaning 7 is the most frequent order size.
+
+### 3. Total
+![image](https://user-images.githubusercontent.com/90236224/208816657-803642f5-f00e-435e-b95b-af01fa57c84a.png)
+- Total sales is densest between 0 to 500 which means customers prefer small amount purchase.
+
+### 4. Gross income
+![image](https://user-images.githubusercontent.com/90236224/208817252-a77dfb73-7ec6-46d0-9caa-941d8f7bf9b9.png)
+- It has right skewed distribution, with most values lies under 500 range.
+
+### 5. Rating
+![image](https://user-images.githubusercontent.com/90236224/208817385-57119457-0da5-475f-a418-5b3e7b3e3e17.png)
+-  Ratings have a similar distribution with a mean of around 7.5 ratings
+- There are much lesser ratings in the 3-5 range, which is good
+
+# **Univariate analysis (Qualitative)
+
+### 1. Across city
+![image](https://user-images.githubusercontent.com/90236224/208817645-ee512894-3ad3-4aba-9947-5e876c5ea586.png)
+- 
+
+
+
+  
  
