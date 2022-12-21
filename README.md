@@ -300,6 +300,98 @@ def timeseries_analysis(col,hue=None):
     fig.savefig("timeseries_analysis"+col+".png")
 ```
 
+### 1. Hour
+![image](https://user-images.githubusercontent.com/90236224/208827339-868bfe2c-1239-42a6-a3dc-15ec6621c7d2.png)
+- Sales peak sharply at 7 PM
+- 4 PM-6 PM is a dead period with meagre sales
+- Stores see moderate sales from 10 AM to 3 PM
+- Ratings, Order quantity logically should not be related to the time of the day. Hence any variation should be attributed to a
+  random phenomenon
+  
+### 2. Month
+![image](https://user-images.githubusercontent.com/90236224/208827418-23bfde23-21a4-4cce-b809-5c03862a6636.png)
+- February is a peak sales month where sales go beyond 50k+. For comparison, most of the other months accumulate less than
+  35k revenue
+- There must be a reason for this spike in February. It can either be a festival in the region, a season that's driving sales of a
+  particular segment, or a promotional campaign that has worked well
+- December also sees a significant spike, although not as steep as February but still significant
+- Sales are lower in Apr-Nov, dipping close to 25k in July
+
+### 3. Month on month sales, members and non-members
+![image](https://user-images.githubusercontent.com/90236224/208827610-5621e194-fe3d-4829-bc32-c64179f64f25.png)
+- Members always have significantly more AOV than normal customers
+- Members AOV has lesser fluctuations than Non-members
+
+### 4. Customers across city
+For the purpose of finding number of customers across the city and sales per customers by cities we shall write a function.
+```
+plt.figure(figsize=(15,8))						
+						
+customer_city = df1[['City', 'CustomerID']].groupby(['City']).nunique()						
+sales_city= df1[["City",'Total']].groupby("City").sum()						
+sales_per_cx = sales_city["Total"]/customer_city["CustomerID"]						
+						
+fig, ax=plt.subplots(nrows =1,ncols=2,figsize=(20,12)) # Defining 4 subplots, changing fig size						
+						
+sns.barplot(x=customer_city.index, y='CustomerID', color="#f7a516",data=customer_city,ax=ax[0])						
+_=ax[0].set_title("Customer Count by Cities", size = 25) # Chart titl for Subplot 1						
+						
+						
+sns.barplot(x=customer_city.index, y=sales_per_cx.values, color="#f7a516",ax=ax[1])						
+_=ax[1].set_title("Sales per Customer by Cities", size = 25) # Chart title for Subplot 2	
+``` 
+
+![image](https://user-images.githubusercontent.com/90236224/208827956-01b5ef8c-2623-4bc1-83f0-bf743dccd2a0.png)
+- Mandalay has the least unique customers (90), while Yangon has the most (200+)
+- Sales per customer metric have an opposite trend where each customer spends maximum in Mandalay ( 1600)
+
+### 5. Members and non-members
+Now we shall understand the relationship between members and non-members on the basis of 4 metrics.
+1. Sales by city/customer type
+2. Average order values by city/customer type
+3. Mean ratings by city/customer type
+4. Mean order quantity by city/customer type
+
+Here again we shall write a function.
+
+```
+sales_grouped= df1[["City","Customer type",'Total']].groupby(["City","Customer type"], as_index = False).sum()												
+mean_ratings = df1[["City","Customer type",'Rating']].groupby(["City","Customer type"], as_index = False).mean()												
+aov = df1[["City","Customer type",'Total']].groupby(["City","Customer type"], as_index = False).mean()												
+mean_units_qty = df1[["City",'Customer type','Quantity']].groupby(["City","Customer type"], as_index = False).mean()												
+fig,axes= plt.subplots(nrows =2,ncols=2,figsize=(20,12))												
+_=sns.barplot(x=sales_grouped["City"], y='Total',data=sales_grouped,hue = 'Customer type', ax = axes[0,0])												
+axes[0,0].set_xticklabels(axes[0,0].get_xticklabels(), fontsize=20)												
+axes[0,0].set_title("Sales by City/Cutomer Type " , size = 25)												
+_=sns.barplot(x=aov["City"], y='Total',data=aov,hue = 'Customer type', ax = axes[0,1])												
+axes[0,1].set_xticklabels(axes[0,1].get_xticklabels(), fontsize=20)												
+axes[0,1].set_title("AOV by City/Cutomer Type " , size = 25)												
+_=sns.barplot(x=mean_ratings["City"], y='Rating',data=mean_ratings,hue = 'Customer type', ax = axes[1,0])												
+axes[1,0].set_xticklabels(axes[1,0].get_xticklabels(), fontsize=20)												
+axes[1,0].set_title("Mean Ratings by City/Cutomer Type " , size = 25)												
+_=sns.barplot(x=mean_units_qty["City"], y='Quantity',data=mean_units_qty,hue = 'Customer type', ax = axes[1,1])												
+axes[1,1].set_xticklabels(axes[1,1].get_xticklabels(), fontsize=20)												
+axes[1,1].set_title("Mean Order Qty by City/Cutomer Type " , size = 25)												
+												
+plt.tight_layout()												
+```
+
+![image](https://user-images.githubusercontent.com/90236224/208828487-715359be-39c3-4ace-9104-dd86cafa61ff.png)
+- Normal customers have more sales in all cities. But that may be because Non Members are higher in the count, as we've seen
+  earlier
+- Members consistently have higher AOV than non-members
+- The higher-order quantity drives the AOV
+
+**Here we have completed our analysis. From the data cleaning, exploratory data analysis, univariate analysis to bivariate analysis. We have also generated insights which is important for the managment for decision taking.**
+Now at the end of this project we will conclude by putting our final insights. What we have understood from the data analysis and recommendation what should be implemented for improving business operations, sales and profit.
+
+# **Conclusion**
+
+
+
+												
+												
+
 
 
 
