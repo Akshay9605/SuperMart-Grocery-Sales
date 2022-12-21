@@ -208,6 +208,101 @@ def grouped_analysis(col,hue=None):
     fig.savefig("grouped_analysis"+col+".png")
 ```
 
+### 1. Across City
+![image](https://user-images.githubusercontent.com/90236224/208825586-19260327-9977-4108-a83a-3b2f8dc8dfd7.png)
+- Although the number of transactions was similar to what we saw earlier in the Univariate analysis, Mandalay city has
+  significantly more sales at 39%
+- Yangon sales are least at 28%
+- The difference in sales is essentially driven by the differences in AOV, which is maximum for Mandalay and low for Yangon
+- Further, we can say that the higher AOV is driven by a higher mean quantity, as seen in the Right bottom chart
+- Ratings also reflect a similar story, with the highest ratings for Mandalay and least for Yangon
+- The above factors point to a significant scope of improvement in Yangon for the supermarket chain
+
+### 2. Customer type
+![image](https://user-images.githubusercontent.com/90236224/208825674-e8ca9eb1-6899-4132-8669-f97b0c1f6265.png)
+- Members are contributing to 43% of sales, driven by a high AOV of 500 a compared to 300 of a normal customer
+- The difference in Average order quantity drives the difference in AOV
+- Ratings are similar among members and Normal customers
+
+### 3. Gender
+![image](https://user-images.githubusercontent.com/90236224/208825734-74e58412-d5d9-400e-9fc4-eedf994d9df4.png)
+- As expected after Univariate analysis, females are driving more sales at 55%
+- The AOV and average order quantity are also significantly higher for females
+- The ratings are not impacted by Gender
+
+### 4. Product line
+![image](https://user-images.githubusercontent.com/90236224/208825836-34d4e3b2-c4f8-4216-83b7-a8594fe70a8f.png)
+- Health and Beauty is the most prominent segment with 30% of sales
+- Three bottom segments - Food & Beverages, Electronics, and Home & lifestyle together make 30% of the sales
+- Food & Beverages have the maximum AOV among all categories. Home and lifestyle also have a relatively higher AOV
+- Customers love these two segments as the ratings are also highest for these two segments
+- If the company could drive more transactions in the above two segments, it would boost the sales significantly due to their
+  higher AOV
+  
+### 5. Payment
+![image](https://user-images.githubusercontent.com/90236224/208825959-36015648-a1f0-4c8a-9887-4adbb65b1f3f.png)
+- Payment mode doesn't seem to impact any metric as modes have equal distribution in sales, ratings etc.
+- AOV for Credit cards is relatively higher, but the difference is not significant to prove a hypothesis
+
+# **Time Series Analysis**
+Time is significant variable of the data. Time series analysis is a specific way of analyzing a sequence of data points collected over an interval of time. In time series analysis, analysts record data points at consistent intervals over a set period of time rather than just recording the data points intermittently or randomly.
+
+### Reason to use time series.
+- Cyclicity in sales can be visualised
+- Seasonal sales patterns can be identified
+- Impact of various events ( Festivals, Market collapse, Natural disasters etc. ) can be identified
+- New strategies can be devised based on the insights to lift sales during specific times
+- Ideal promotional times can be identified
+
+Our first step is to convert date column into datetime. 
+We have added some more columns to the data such as: month, day, weekday, hour and minute.
+We shall write a function. 
+
+``` 
+    # Defining function for Univariate Analysis of Quantitative Variables
+
+def timeseries_analysis(col,hue=None):
+    
+    plt.figure(figsize=(20,10))
+    
+    sales_grouped= df1[[col,'Total']].groupby(col).sum()              # Sales grouped by col
+    mean_ratings = df1[[col,'Rating']].groupby(col).mean()            # Avg ratings grouped by col
+    aov  = df1[[col,'Total']].groupby(col).mean()                      # AOV by col
+    mean_units_qty = df1[[col,'Quantity']].groupby(col).mean()         # Mean order qty by col
+
+
+    fig, axes=plt.subplots(nrows =2,ncols=2,figsize=(20,12))                      # Defining 4 subplots, changing fig size
+     
+    
+    axes[0,0].set_title("Sales by " + col , size = 25)                            # Chart titl for Subplot 1
+    sns.lineplot(x=sales_grouped.index , y= sales_grouped['Total'], data=sales_grouped, ax=axes[0,0])
+
+
+    axes[0,1].set_title("AOV by "  + col,size = 25 )                              #  Title for Subplot 2
+    axes[0,1].set_xticklabels(axes[0,1].get_xticklabels(), fontsize=20)    
+    axes[0,1].set_xlabel( axes[0,1].get_xticklabels(),fontsize=20)
+    axes[0,1].set_ylabel( axes[0,1].get_yticklabels(),fontsize=20)
+    sns.barplot(x=aov.index, y='Total', color="#f7a516",data=aov,ax=axes[0,1])    
+    
+    
+    axes[1,0].set_title("Mean Ratings by " + col,size = 25 )                      # Title for Subplot 3
+    axes[1,0].set_xlabel( axes[1,0].get_xticklabels(),fontsize=20)
+    axes[1,0].set_ylabel( axes[1,0].get_yticklabels(),fontsize=20)
+    sns.barplot(y=mean_ratings.index, x='Rating', color="#305cb0",data=mean_ratings,ax=axes[1,0],orient='h')
+
+    
+    axes[1,1].set_title("Mean Units Qty by " + col,size = 25 )                    # Title for Subplot 4
+    axes[1,1].set_xlabel( axes[1,1].get_xticklabels(),fontsize=20)
+    axes[1,1].set_ylabel( axes[1,1].get_yticklabels(),fontsize=20)
+    sns.barplot(y=mean_units_qty.index, x='Quantity', color="#712f80",data=mean_units_qty,ax=axes[1,1],orient='h')
+
+    plt.tight_layout()
+    fig.savefig("timeseries_analysis"+col+".png")
+```
+
+
+
+
 
 
 
