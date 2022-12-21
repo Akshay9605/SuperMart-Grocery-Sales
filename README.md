@@ -133,6 +133,18 @@ margins )
 ![image](https://user-images.githubusercontent.com/90236224/208821250-adf6e669-6232-4dd9-b666-2536ec69ad22.png)
 - 2/3rd of the transactions are done by Normal Members and only 1/3rd by Members
 
+### Geographical location
+[Geo map](https://goo.gl/maps/EWAAQeQLAebCYPfm8)
+![image](https://user-images.githubusercontent.com/90236224/208824428-a088fe46-1e5f-4ccb-aa81-d01ae72d118e.png)
+
+- The cities are distributed across lengths of Myanmar and are not close to each other
+- Yangon is the only coastal city where the chain is present. Other ones are located in the middle of Myanmar
+- The company can expand in the North and East of Myanmar as there is no presence in those areas
+- A big coastal city Sittwe is also an option for later expansion
+
+
+
+
 
 
 
