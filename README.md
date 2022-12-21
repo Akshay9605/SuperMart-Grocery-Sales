@@ -51,7 +51,7 @@ For purpose of illustration the [Super Market Sales](https://drive.google.com/fi
  
  - After null% verification it is confirmed that all null values have been imputed.
  
- # **Univariate Analysis(Quantative)**
+ # Univariate Analysis(Quantative)
  It is the most simplest form of statistical analysis. The key fact is that only one variable is involved. 
  Here we shall use voilin plot and stripplot for analysis. For that purpose we need to write a function. 
   
