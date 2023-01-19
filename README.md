@@ -402,6 +402,9 @@ Now at the end of this project we will conclude by putting our final insights. W
 - Yangon has the least sales and AOV of all cities, and the difference is significant too. Hence a focused marketing campaign
   can be launched to meet the potential sale in this city.
 
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="akshay9605" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/akshay9605?trk=profile-badge">Akshay Kumar</a></div>
+              
+              
 
 
 												
